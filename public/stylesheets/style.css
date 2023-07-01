@@ -2127,6 +2127,12 @@ video {
   justify-content: center;
 }
 
+@media (min-width: 1024px), (orientation: landscape) {
+  #createTaskBtn {
+    font-size: calc(1vw + 0.1em);
+  }
+}
+
 #createTask {
   margin: 10% auto 10% auto;
   display: flex;

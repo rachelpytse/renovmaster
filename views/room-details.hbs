@@ -82,17 +82,17 @@
             
 
             <!--Formulaire d'upload des initial pictures. Ne pas changer l'attribut class sinon modif à faire aussi dans le public/js/script.js-->
-             <div class="addRoomPhoto">
-                <form action="/projects/{{roomFromDB.projectId}}/rooms/{{roomFromDB._id}}/photos?field=roomInitialPictures" method="post" enctype="multipart/form-data" class="addRoomImgInit"> 
-                    <label> <img class="addPhotoIcon" src="/images/addPhoto.svg" alt="addPhoto">
-                        <input type="file" name="roomImg" class="addRoomImgWindowInit" multiple="multiple"/>
-                    </label>
-                    
-                    <p>{{#if errorMessage}}
-                        {{errorMessage}}
-                        {{/if}}</p>
-                </form>
-            </div>
+                <div class="addRoomPhoto">
+                    <form action="/projects/{{roomFromDB.projectId}}/rooms/{{roomFromDB._id}}/photos?field=roomInitialPictures" method="post" enctype="multipart/form-data" class="addRoomImgInit"> 
+                        <label> <img class="addPhotoIcon" src="/images/addPhoto.svg" alt="addPhoto">
+                            <input type="file" name="roomImg" class="addRoomImgWindowInit" multiple="multiple"/>
+                        </label>
+                        
+                        <p>{{#if errorMessage}}
+                            {{errorMessage}}
+                            {{/if}}</p>
+                    </form>
+                </div>
                 
                 <li class="roomPhoto"></li>
                 <li class="roomPhoto"></li>
@@ -108,7 +108,7 @@
             <ul>
                 {{#each roomFromDB.currentPictures}}
                 <li class="roomPhoto"><img src={{this}} alt="Current pictures"/>
-                <a class="deletePhoto" href="/projects/{{../roomFromDB.projectId}}/rooms/{{../roomFromDB._id}}/photos/del/roomInitialPictures/{{@index}}"><img src="/images/deleteGray.svg" alt=""></a></li>
+                <a class="deletePhoto" href="/projects/{{../roomFromDB.projectId}}/rooms/{{../roomFromDB._id}}/photos/del/currentPictures/{{@index}}"><img src="/images/deleteGray.svg" alt=""></a></li>
                 {{/each}}
                 
                 <!--Formulaire d'upload des current pictures. Ne pas changer l'attribut class sinon modif à faire aussi dans le public/js/script.js-->
@@ -138,7 +138,7 @@
             <ul>
                 {{#each roomFromDB.threeDRendering}}
                 <li class="roomPhoto"><img src={{this}} alt="ThreeDdpictures"/>
-                <a class="deletePhoto" href="/projects/{{../roomFromDB.projectId}}/rooms/{{../roomFromDB._id}}/photos/del/roomInitialPictures/{{@index}}"><img src="/images/deleteGray.svg" alt=""></a></li>
+                <a class="deletePhoto" href="/projects/{{../roomFromDB.projectId}}/rooms/{{../roomFromDB._id}}/photos/del/threeDRendering/{{@index}}"><img src="/images/deleteGray.svg" alt=""></a></li>
                 {{/each}}
                 
                 <!--Formulaire d'upload des 3D pictures. Ne pas changer l'attribut class sinon modif à faire aussi dans le public/js/script.js-->
