@@ -1,64 +1,58 @@
 <div class="sectionContainer">
-    <div class="roomCartMain">
+  <div class="roomCartMain">
 
-        <div class="roomName">
-            {{roomName}}
+    <div class="roomName">
+      {{roomName}}
+    </div>
+
+    <div class="roomCartPhotoSection">
+        <div class="roomCartPhoto">
+            <img src="{{roomInitialPictures.[0]}}" alt="Initial picture"/>
         </div>
 
-            <div class="roomCartPhotoSection">
-                <div class="roomCartPhoto">
-                    <img src="{{roomInitialPictures.[0]}}" alt="Initial picture"/>
-                </div>
+        <img class="photoArrow" src="/images/roomCartPhotoArrow.svg" alt="photoArrow">
 
-                <img class="photoArrow" src="/images/roomCartPhotoArrow.svg" alt="photoArrow">
+        <div class="roomCartPhoto">
+            <img src="{{threeDRendering.[0]}}" alt="ThreeD Picture"/>
 
-                <div class="roomCartPhoto">
-                    <img src="{{threeDRendering.[0]}}" alt="ThreeD Picture"/>
-
-                </div>
-                
-            </div>
-
-        <h2 class="roomCartDescription">Description</h2>
-        <p class="roomCartDescriptionDetails">{{roomDescription}}</p>
+        </div>
         
+    </div>
 
-            <div class="roomCartEFDateContainer">
-                <div class="smallTitle">Estimated finish date :</div>
-                    <span class="roomCartEFDate">{{finishDate}}</span>
-                
-            </div>
-        
+    <h2 class="roomCartDescription">Description</h2>
+    <p class="roomCartDescriptionDetails">{{roomDescription}}</p>
 
-
-        <div class="roomCartProcessBar">
-        {{#if advancement}}
-        <div class="roomCartFinishedBar" style="width :{{advancement}}%;">
-        {{/if}}
-        </div>
-
-        <div class="roomCartUnfinishedBar">
-        </div>
-        </div>
-
-        <div class="roomCartTaskContainer">
-            <div class="roomCartTaskCategory">
-                
-                    {{#each tasks}}
-                    {{this.type}}
-                    {{/each}}
-                
-            </div>
-
-        </div>
-
-
-        <a class="roomLink" href="/projects/{{projectId}}/rooms/{{_id}}"><img src="/images/moreDetailsArrow.svg" alt=""></a>
+    <div class="roomCartEFDateContainer">
+      <div class="smallTitle">Estimated finish date :</div>
+      <span class="roomCartEFDate">{{finishDate}}</span>
 
     </div>
-    
 
-    
+    <div class="roomCartProcessBar">
+      {{#if advancement}}
+        <div class="roomCartFinishedBar" style="width :{{advancement}}%;"></div>
+      {{/if}}
+
+      {{! <div class="roomCartUnfinishedBar">
+        </div> }}
+    </div>
+
+    <div class="roomCartTaskContainer">
+      <div class="roomCartTaskCategory">
+
+        {{#each tasks}}
+          {{this.type}}
+        {{/each}}
+
+      </div>
+
+    </div>
+
+    <a class="roomLink" href="/projects/{{projectId}}/rooms/{{_id}}"><img
+        src="/images/moreDetailsArrow.svg"
+        alt=""
+      /></a>
+
+  </div>
+
 </div>
-
-

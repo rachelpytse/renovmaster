@@ -19,6 +19,8 @@ form {
   flex-direction: column;
 }
 
+
+
 /* 
 ██╗███╗   ██╗██████╗ ███████╗██╗  ██╗
 ██║████╗  ██║██╔══██╗██╔════╝╚██╗██╔╝
@@ -1858,6 +1860,18 @@ video {
   background: #f3f3f4;
   border-radius: 2px 2px 0px 0px;
 }
+
+@media (min-width: 1024px), (orientation: landscape) {
+  .roomCartProcessBar {
+    width: 20vw;
+    height: 2vh;
+    display: flex;
+    margin: 5% auto;
+    background: #f3f3f4;
+    border-radius: 2px 2px 0px 0px;
+  }
+}
+
 
 .roomCartFinishedBar {
   width: 5%;
