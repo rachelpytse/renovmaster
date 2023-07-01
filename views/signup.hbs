@@ -1,0 +1,53 @@
+<div class="loginSignup">
+  <div class="loginSignupHeading">
+    <div class="loginSignupHeadingContainer">
+      <div class="mediumLogo">
+        <span class="mediumLogo1">Renov'</span>
+        <span class="mediumLogo2">Master</span>
+      </div>
+      <div class="slogan">
+        <span id="signupSlogan1" class="slogan1">Hi! Wanna track your renovation
+          work easily?</span>
+        <span id="signupSlogan2" class="slogan2">Let’s create your account and
+          try</span>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="loginSignupFormContainer">
+    <form id="signupForm" class="longForm" action="/signup" method="post">
+      <label class="formLabel">Full name:
+        <input class="formInput" type="text" name="firstName" />
+      </label>
+      <label class="formLabel">Company name:
+        <input class="formInput" type="text" name="companyName" />
+      </label>
+      <label class="formLabel">Company registration number :
+        <input class="formInput" type="text" name="companyRegistrationNb" />
+      </label>
+      <label class="formLabel">Company address:
+        <input class="formInput" type="text" name="companyAddress" />
+      </label>
+      <label class="formLabel">Company post code :
+        <input class="formInput" type="text" name="companyPostCode" />
+      </label>
+      <label class="formLabel">Email* :
+        <input class="formInput" type="email" name="email" required />
+      </label>
+      <label class="formLabel">Phone number :
+        <input class="formInput" type="number" name="phoneNb" />
+      </label>
+      <label class="formLabel">Password* :
+        <input class="formInput" type="password" name="password" required />
+      </label>
+
+      <button id="signupBtn" class="roundGradientBtn" type="submit">Sign up</button>
+      <p>{{#if errorMessage}}
+          {{errorMessage}}
+        {{/if}}</p>
+    </form>
+
+  </div>
+
+</div>

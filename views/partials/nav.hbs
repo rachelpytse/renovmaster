@@ -1,0 +1,58 @@
+<div class="navbar">
+    <!--panneau de navigation. Changer le paramètre visible/hidden via css pour qu'il soit responsive. Quand utilisateur 
+    utilise mobile il sera en haut et il sera hidden (il faut cliquer icone pour afficher), 
+    quand utilise desktop il sera a droite visible.-->
+    <div class="navbarUp">
+      {{!-- <img
+        class="navicon"
+        src="/images/hamburgerMenu.svg"
+        alt="navicon"
+      /> --}}
+
+      <div id="menuToggle">
+
+        <input type="checkbox" />
+
+
+        <span></span>
+        <span></span>
+        <span></span>
+
+
+        <ul id="menu">
+          {{#each userProjects}}
+          <li class="menuClient"><a href="/projects/{{_id}}">{{firstName}} {{lastName}}.</a></li>
+          <!--<a href="#"><li class="menuRoom">Room 1</li></a>-->
+
+          <div id="signoutBtn" class="editDeleteBtn">
+            <img class="editIcon" src="/images/signout.svg" alt="">
+            <a id="signout" class="editLink" href="#">Signout</a>
+
+          </div>
+         {{/each}}
+         
+         
+
+        </ul>
+
+        
+        
+      </div>
+          
+
+
+  
+
+      <div class="smallLogo">
+        <a href="/projects">
+          <span class="smallLogo1">Renov'</span>
+          <span class="smallLogo2">Master</span>
+        </a>
+      </div>
+      <!--Icone de profil, il faudra mettre un  pour que ça renvoi à l'image de profile stocké dans la BDD-->
+      <a class="navProfilePic" href="/profile"><img
+          src="/images/navDefautUserProfile.svg"
+          alt="defautUserProfile"
+        /></a>
+    </div>
+  </div>

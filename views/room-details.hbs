@@ -1,0 +1,221 @@
+<div class="display">
+{{>nav}}
+
+<div id="roomDetails">
+    <div class="roomHeading">
+        <div class="projectRoomName">{{roomFromDB.roomName}}</div>
+        <a class="backLink" href="/projects/{{roomFromDB.projectId}}"><img class="backLinkIcon" src="/images/backLink.svg" alt="">Back to project</a>
+    
+    </div>
+        
+    <h2 class="roomCartDescription">Description</h2>
+    <p id="roomCartDescriptionDetails">{{roomFromDB.roomDescription}}</p>
+    <span id="roomFinishDate">{{roomFromDB.finishDate}}</span>
+    <form id="roomDescriptionForm" class="attachForm {{#if isHidden }}hidden{{/if}}" action="/projects/{{roomFromDB.projectId}}/rooms/{{roomFromDB._id}}" method="POST"> 
+        <label id="roomDescriptionLabel" class="formLabel">
+            <input id="roomDescriptionInput" class="attachFormInput" type="text" name="roomDescription"/>
+        </label>
+        <p class="attachInfo">
+        </p>
+
+        <div class="roomCartEFDateContainer">
+            <label class="roomCartEFDateLabel">Estimated finish date :</label>
+                <span class="roomCartEFDate">{{roomFromDB.finishDateFormatted}}</span>
+                <input id="roomCartEFDateInput" class="attachFormInput" type="date" name="roomCartEFDate"/>
+            </label>
+            <p class="attachInfo">
+            </p>
+        </div>
+
+            <button id="roomDescriptionFormBtn" class="roundGradientSaveBtn" type="submit">Save</button>
+            <p>{{#if errorMessage}}
+                {{errorMessage}}
+            {{/if}}</p>
+        
+        
+    </form>
+
+    <div id="roomDescriptionSaveEdit">
+        <div id="editRoomDescription">
+            <div id="editRoomDescriptionBtn" class="editDeleteBtn2">
+                <img class="editIcon" src="/images/edit.svg" alt="editIcon">
+                <a class="editDeleteLink" href="#">Edit / delete room</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="deleteRoomDescriptionBtn" class="hiddenDeleteBtn">
+        <img class="deleteIcon" src="/images/delete.svg" alt="deleteIcon">
+        <a class="deleteLink" href="/projects/{{../roomFromDB.projectId}}/rooms/{{../roomFromDB._id}}/del">Delete room</a>
+    </div>
+
+
+    <div class="roomCartProcessBar">
+    <div class="roomCartFinishedBar"style="width :{{roomFromDB.advancement}}%;">
+    </div>
+
+    <div class="roomCartUnfinishedBar" >
+    </div>
+    </div>
+
+    <div class="roomCartTaskContainer">
+        <div class="roomCartTaskCategory">
+            
+                {{#each roomFromDB.tasks}}
+                {{this.type}}
+                {{/each}}
+            
+        </div>
+
+    </div>
+    
+    
+
+    <div class="roomSection">
+        <h2 class="sectionHead">Origin photo</h2>
+        <div class="roomPhotoContainer">
+            <ul>
+                {{#each roomFromDB.roomInitialPictures}}
+                <li class="roomPhoto"><img src={{this}} alt="Initial pictures"/>
+                <a class="deletePhoto" href="/projects/{{../roomFromDB.projectId}}/rooms/{{../roomFromDB._id}}/photos/del/roomInitialPictures/{{@index}}"><img src="/images/deleteGray.svg" alt=""></a></li>
+                {{/each}}
+            
+
+            <!--Formulaire d'upload des initial pictures. Ne pas changer l'attribut class sinon modif à faire aussi dans le public/js/script.js-->
+             <div class="addRoomPhoto">
+                <form action="/projects/{{roomFromDB.projectId}}/rooms/{{roomFromDB._id}}/photos?field=roomInitialPictures" method="post" enctype="multipart/form-data" class="addRoomImgInit"> 
+                    <label> <img class="addPhotoIcon" src="/images/addPhoto.svg" alt="addPhoto">
+                        <input type="file" name="roomImg" class="addRoomImgWindowInit" multiple="multiple"/>
+                    </label>
+                    
+                    <p>{{#if errorMessage}}
+                        {{errorMessage}}
+                        {{/if}}</p>
+                </form>
+            </div>
+                
+                <li class="roomPhoto"></li>
+                <li class="roomPhoto"></li>
+                
+            </ul>
+             
+        </div>
+    </div>
+
+    <div class="roomSection">
+        <h2 class="sectionHead">Current photo</h2>
+        <div class="roomPhotoContainer">
+            <ul>
+                {{#each roomFromDB.currentPictures}}
+                <li class="roomPhoto"><img src={{this}} alt="Current pictures"/>
+                <a class="deletePhoto" href="/projects/{{../roomFromDB.projectId}}/rooms/{{../roomFromDB._id}}/photos/del/roomInitialPictures/{{@index}}"><img src="/images/deleteGray.svg" alt=""></a></li>
+                {{/each}}
+                
+                <!--Formulaire d'upload des current pictures. Ne pas changer l'attribut class sinon modif à faire aussi dans le public/js/script.js-->
+                <div class="addRoomPhoto">
+                    <form action="/projects/{{roomFromDB.projectId}}/rooms/{{roomFromDB._id}}/photos?field=currentPictures" method="post" enctype="multipart/form-data" class="addRoomImgCurr"> 
+                        <label> <img class="addPhotoIcon" src="/images/addPhoto.svg" alt="addPhoto">
+                            <input type="file" name="roomImg" class="addRoomImgWindowCurr" multiple="multiple"/>
+                        </label>
+                        
+                        <p>{{#if errorMessage}}
+                            {{errorMessage}}
+                            {{/if}}</p>
+                    </form>
+                </div>
+
+                <li class="roomPhoto"></li>
+                <li class="roomPhoto"></li>
+                
+            </ul>
+             
+        </div>
+    </div>
+
+    <div class="roomSection">
+        <h2 class="sectionHead">3D rendering</h2>
+        <div class="roomPhotoContainer">
+            <ul>
+                {{#each roomFromDB.threeDRendering}}
+                <li class="roomPhoto"><img src={{this}} alt="ThreeDdpictures"/>
+                <a class="deletePhoto" href="/projects/{{../roomFromDB.projectId}}/rooms/{{../roomFromDB._id}}/photos/del/roomInitialPictures/{{@index}}"><img src="/images/deleteGray.svg" alt=""></a></li>
+                {{/each}}
+                
+                <!--Formulaire d'upload des 3D pictures. Ne pas changer l'attribut class sinon modif à faire aussi dans le public/js/script.js-->
+                <div class="addRoomPhoto">
+                    <form action="/projects/{{roomFromDB.projectId}}/rooms/{{roomFromDB._id}}/photos?field=threeDRendering" method="post" enctype="multipart/form-data" class="addRoomImg3d"> 
+                        <label> <img class="addPhotoIcon" src="/images/addPhoto.svg" alt="addPhoto">
+                            <input type="file" name="roomImg" class="addRoomImgWindow3d" multiple="multiple"/>
+                        </label>
+                        
+                        <p>{{#if errorMessage}}
+                            {{errorMessage}}
+                            {{/if}}</p>
+                    </form>
+                </div>
+
+                <li class="roomPhoto"></li>
+                <li class="roomPhoto"></li>
+                
+            </ul>
+             
+        </div>
+    </div>
+
+    <div class="roomSection">
+        <h2 class="sectionHead">Task details</h2>
+            <div id="taskContainer" class="sectionContainer">
+
+                {{#if taskDetails.painting}}
+                    <h3>Painting</h3>
+                    {{#each taskDetails.painting}}
+                        {{>task}}
+                    {{/each}}
+                {{/if}}
+                {{#if taskDetails.plumbing}}
+                    <h3>Plumbing</h3>
+                    {{#each taskDetails.plumbing}}
+                        {{>task}}
+                    {{/each}}
+                {{/if}}
+                {{#if taskDetails.electricity}}
+                    <h3>Electricity</h3>
+                    {{#each taskDetails.electricity}}
+                        {{>task}}
+                    {{/each}}
+                {{/if}}
+                {{#if taskDetails.flooring}}
+                    <h3>Flooring</h3>
+                    {{#each taskDetails.flooring}}
+                        {{>task}}
+                    {{/each}}
+                {{/if}}
+                {{#if taskDetails.drywalling}}
+                    <h3>Drywalling</h3>
+                    {{#each taskDetails.drywalling}}
+                        {{>task}}
+                    {{/each}}
+                {{/if}}
+                {{#if taskDetails.tiling}}
+                    <h3>Tiling</h3>
+                    {{#each taskDetails.tiling}}
+                        {{>task}}
+                    {{/each}}
+                {{/if}}
+                    
+                <form id="createTask" action="/projects/{{roomFromDB.projectId}}/rooms/{{roomFromDB._id}}/tasks" method="post"> 
+                    
+                    <button id="createTaskBtn" class="roundGradientBtn" type="submit">Create Task</button>
+                    <p>{{#if errorMessage}}
+                        {{errorMessage}}
+                    {{/if}}</p>
+                
+                </form>
+            
+        </div>
+    </div>
+
+    
+
+</div>
+</div>

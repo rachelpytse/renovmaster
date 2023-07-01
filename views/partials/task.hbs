@@ -1,0 +1,27 @@
+<table class="taskTable">
+    <tr>
+        <th>Procedure</th>
+        <!--<th>Material</th> -->
+        <th>Position</th>
+        <th>Remarks</th>
+        <th>Done?</th>
+    </tr>
+    <tr>
+        <td> <a href="/projects/{{projectId}}/rooms/{{roomId}}/tasks/{{_id}}/edit">{{procedure}}</a> </td>
+        <!--<td>{{materials}}</td> -->
+        <td>{{position}}</td>
+        <td>{{remarks}}</td>
+        <td class="done">
+
+            <form action="/projects/{{projectId}}/rooms/{{roomId}}/tasks/{{_id}}/check" method="post" class="checkTask"> 
+              <label > 
+                {{#if Done}}
+                    <input type="checkbox" name="checkbox" class="checkbox" checked >
+                {{else}}
+                    <input type="checkbox" name="checkbox" class="checkbox">
+                {{/if}}
+              </label>
+            </form>
+        </td>
+    </tr>
+</table>

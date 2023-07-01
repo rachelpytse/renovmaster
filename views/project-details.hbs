@@ -1,0 +1,258 @@
+<div class="display">
+{{>nav}}
+
+{{!-- <h1>Project details page</h1> --}}
+
+
+  <div class="displayMain">
+    <div id="projectDetails">
+      <div class="projectDetailsHeading">
+        <form id="projectInfoForm" class="attachForm hidden" action="/projects/{{projectDetails._id}}" method="POST"> 
+            <label id="firstNameLabel" class="formLabel">Client first name
+                <input id="firstNameInput" class="attachFormInput" type="text" name="firstName"/>
+            </label>
+
+            <label id="lastNameLabel" class="formLabel">Client last name
+                <input id="lastNameInput" class="attachFormInput" type="text" name="lastName"/>
+            </label>
+
+            <label id="addressLabel" class="formLabel">Client address
+                <input id="addressInput" class="attachFormInput" type="text" name="address"/>
+            </label>
+
+            <label id="phoneNbLabel" class="formLabel">Client phone number
+                <input id="phoneNbInput" class="attachFormInput" type="text" name="phoneNb"/>
+            </label>
+
+            <label id="projectDeadlineLabel" class="formLabel">Project deadline
+                <input id="projectDeadlineInput" class="attachFormInput" type="date" name="projectDeadline"/>
+            </label>
+
+
+
+                <button id="projectInfoFormBtn" class="roundGradientBtn" type="submit">Save</button>
+                <p>{{#if errorMessage}}
+                    {{errorMessage}}
+                {{/if}}</p>
+        </form>
+
+        
+      <div id="clientInfo">
+
+      <div id="clientName">{{projectDetails.firstName}} {{projectDetails.lastName}}</div>
+      <div id="clientContact">
+        {{projectDetails.address}}
+        {{projectDetails.phoneNb}}
+        </div>
+      </div>
+
+      <div id="projectDeadline" class="dateContainer">
+        <span id="projectDeadlineLabel" class="smallTitle">Project deadline:  </span><span id="projectDeadlineDate">{{projectDetails.projectDeadlineFormatted}}</span>
+        
+      </div>
+
+      <div id="editDeleteProject">
+        <div id="editProjectBtn" class="editDeleteBtn2">
+          <img class="editIcon" src="../images/edit.svg" alt="editIcon">
+          <a class="editLink" href="#">Edit / Delete project</a>
+        </div>
+      </div>
+      
+      <div id="deleteProjectBtn" class="hiddenDeleteBtn">
+        <img class="deleteIcon" src="/images/delete.svg" alt="deleteIcon">
+        <a class="deleteLink" href="#">Delete project</a>
+      </div>
+
+    <div id="deleteProject" class="hidden">
+      <h3>Are you sure you want to delete this project </h3> 
+      <form action="/projects/{{projectDetails._id}}/delete" method="post" id="doIt"> 
+        <label class="deleteProject"> 
+          <button class="roundWhiteBtn">Yes</button>
+          <button class="roundGradientBtn" >No</button>
+
+        </label>
+      </form>
+    </div>
+
+      <p id="statusBarTitle">Select work status:</p>
+      <div class="statusBarContainer">
+        
+        <div class="statusBar">
+          <div class="statusBarLine">
+
+          </div>
+          <div class="statusIcon" onclick="iconClick(this)">
+            <img class="iconLine" src="../images/meetingIconLine.svg" alt="meetingIcon">
+            
+          </div>
+
+          <div class="statusIcon" onclick="iconClick(this)">
+            <img class="iconLine" src="../images/designIconLine.svg" alt="designIcon">
+            
+          </div>
+
+          <div class="statusIcon" onclick="iconClick(this)">
+            <img class="iconLine" src="../images/materialIconLine.svg" alt="designIcon">
+            
+          </div>
+
+          <div class="statusIcon" onclick="iconClick(this)">
+            <img class="iconLine" src="../images/workinprogressIconLine.svg" alt="workinprogressIcon">
+            
+          </div>
+
+          <div class="statusIcon" onclick="iconClick(this)">
+            <img class="iconLine" src="../images/finishedIconLine.svg" alt="finishedIcon">
+            
+          </div>
+
+        </div>
+
+        <div class="statusInfo">
+          <div>
+            <span class="status">Meeting</span>
+          </div>
+
+          <div>
+                  <span class="status">Design</span>
+          </div>
+
+          <div>
+                  <span class="status">Material</span>
+          </div>
+
+          <div>
+                  <span class="status">Work in progress</span>
+          </div>
+
+          <div>
+                  <span class="status">Finished</span>
+          </div>
+          
+
+        </div>
+          
+
+      </div>
+
+
+      <div id="nextMeeting" class="section">
+        <h2 class="sectionHead">Next meeting</h2>
+        <div  class="sectionContainer">
+          <div id="nextMeetingDetails">
+            <p>{{projectDetails.firstMeetingAddress}}</p>
+            <p>{{projectDetails.firstMeetingDateFormatted}}</p>
+            <img class="deleteGrayIcon" src="/images/deleteGray.svg" alt="delete">
+
+          </div>
+          
+
+        </div>
+      </div>
+
+      <div id="addeditMeeting">
+        <div id="addMeeting">
+          <div id="addMeetingBtn" class="editDeleteBtn">
+            <img class="editIcon" src="../images/add.svg" alt="addIcon">
+            <a class="editLink" href="#">Add meeting</a>
+          </div>
+        </div>
+      </div>
+
+    <!-- J'enlève la possibilité d'edit pour l'instant. Trop complicado
+      <div id="editMeeting">
+        <div id="editMeetingBtn" class="editDeleteBtn">
+          <img class="editIcon" src="../images/edit.svg" alt="editIcon">
+          <a class="editLink" href="#">Edit</a>
+        </div>
+      </div>
+
+      </div>
+    -->
+      
+
+
+      <div id="projectDescription" class="section">
+        <h2 class="sectionHead">Project description</h2>
+        <div id="projectDescriptionDetails" class="sectionContainer">
+        <p>{{projectDetails.projectDescription}}</p>
+        </div>
+      </div>
+
+      <div id="floorplan" class="section">
+        <h2 class="sectionHead">Floor plan</h2>
+        <div id="floorplanPhotos" class="roomPhotoContainer">
+            <!-- Mise en page si une image a déjà été uploadée -->
+            <ul>
+              {{!-- {{#each this.floorPlan}} --}}
+              {{#if projectDetails.floorPlan}}
+              
+                  <li>
+                    <img class="photo" src="{{projectDetails.floorPlan}}" alt="FloorPlan"/>
+                    <a class="deletePhoto" href=""><img src="/images/deleteGray.svg" alt=""></a>
+                  </li>
+                  
+                
+              {{else}}
+              
+              <li>
+                <form action="/projects/{{projectDetails._id}}/photos" method="post" enctype="multipart/form-data" class="addPhotoForm"> 
+                  <label class="addPhoto"> 
+                      <input type="file" name="floorPlan" class="addPhotoWindow"/>
+                      <img src="/images/roomPhotoBg.svg" alt="">
+                  </label>
+                  
+                  <p>{{#if errorMessage}}
+                      {{errorMessage}}
+                      {{/if}}</p>
+                </form>
+              </li>
+              {{/if}}
+              
+            </ul>
+            
+        </div>
+        
+      </div>
+      
+
+    <!-- Link to modify the picture once a picture has been uploaded --> 
+    <form action="/projects/{{projectDetails._id}}/photos/update" method="post" enctype="multipart/form-data" class="addPhotoForm"> 
+        <label>
+            <div id="editDeleteProject">
+                <div id="editProject" class="editDeleteBtn">
+                    <img class="editIcon" src="../images/edit.svg" alt="editIcon">
+                    <input type="file" name="floorPlan" class="addPhotoWindow" />  
+                </div>
+            </div>
+        </label>
+    </form>
+    </div>
+
+      
+    <div class="projectDetailsRooms">
+      <h2 class="sectionHead">Rooms</h2>
+        {{#each roomDetails}}
+        <a class="roomPreviewLink" href="/projects/{{projectId}}/rooms/{{_id}}">{{>room}}</a>
+        {{/each}}
+      
+      <div id="roomCreation">
+        <p class="smallTitle">Type in room name</p>
+        <form id="roomCreationForm" action="/projects/{{projectDetails._id}}/rooms" method="post"> 
+          <label id="roomCreationLabel" class="formLabel">
+            <input id="roomFormInput" class="formInput" type="text" name="roomName" required/>
+          </label>
+          <button id="roomCreationFormBtn" class="roundGradientBtn" type="submit">Create Room</button>
+          <p>{{#if errorMessage}}
+              {{errorMessage}}
+            {{/if}}</p>
+        </form>
+
+      </div>
+      </div>
+      
+
+    </div>
+  </div>
+</div>
+    

@@ -1,0 +1,31 @@
+<div class="loginSignup">
+  <div class="loginSignupHeading">
+    <div class="loginSignupHeadingContainer">
+      <div class="mediumLogo">
+        <span class="mediumLogo1">Renov'</span>
+        <span class="mediumLogo2">Master</span>
+      </div>
+      <div class="slogan">
+        <span id="signupSlogan1" class="slogan1">Welcome back!</span>
+        <span id="signupSlogan2" class="slogan2">Let’s track your renovation work</span>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="loginSignupFormContainer">
+    <form id="loginForm" class="longForm" action="/login" method="post">
+      <label class="formLabel">Your e-mail address:
+        <input class="formInput" type="text" name="email" required/>
+      </label>
+       <label class="formLabel">Password :
+        <input class="formInput" type="password" name="password" required />
+      </label>
+      <button id="loginBtn" class="roundGradientBtn" type="submit">Login</button>
+      <p>{{#if errorMessage}}
+          {{errorMessage}}
+        {{/if}}</p>
+
+  </div>
+
+</div>

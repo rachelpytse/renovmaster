@@ -1,0 +1,83 @@
+<div class="display">
+  {{>nav}}
+  
+
+  {{! <div class="navmenu hidden"> }}
+
+  {{! </div> }}
+
+  <div id="profile">
+    <div id="profileMain">
+      <img class="profilePic" src="../images/defautUserProfile.svg" alt="profilePic" />
+      <div id="profileContainer">
+        <div class="profileItem">
+          <h3>Full name:</h3>
+          <p class="vignette">{{fullName}}</p>
+        </div>
+
+        <div class="profileItem">
+          <h3>Company name:</h3>
+          <p class="vignette">{{companyName}}</p>
+
+        </div>
+
+        <div class="profileItem">
+          <h3>Company registration number : </h3>
+          <p class="vignette">{{companyRegistratioNb}}</p>
+
+        </div>
+
+        <div class="profileItem">
+          <h3>Company address: </h3>
+          <p class="vignette">{{companyAddress}}</p>
+
+        </div>
+
+        <div class="profileItem">
+          <h3>Company post code : </h3>
+          <p class="vignette">{{companyPostCode}}</p>
+
+        </div>
+
+        <div class="profileItem">
+          <h3>Phone number :</h3>
+          <p class="vignette">{{phone}}</p>
+
+        </div>
+
+        <div class="profileItem">
+          <h3>Email :</h3>
+          <p class="vignette">{{email}}</p>
+
+        </div>
+
+        <div class="profileItem">
+          <h3>Password :</h3>
+          <p class="vignette">*********</p>
+
+        </div>
+
+        <div id="editDeleteProfile">
+          <div id="editProfile" class="editDeleteBtn">
+            <img class="editIcon" src="../images/edit.svg" alt="editIcon">
+            <a class="editLink" href="#">Edit Profile</a>
+          </div>
+
+           <div id="deleteProfile" class="editDeleteBtn">
+            <img class="deleteIcon" src="../images/delete.svg" alt="deleteIcon">
+            <a class="deleteLink" href="#">Delete Account</a>
+           </div>
+
+        </div>
+
+        
+        
+        
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

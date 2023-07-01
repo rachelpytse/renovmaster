@@ -1,0 +1,32 @@
+<div class="display">
+    {{>nav}}
+
+    {{!-- <span class="dropdown-el">
+        <input type="radio" name="sortType" value="Relevance" checked="checked" id="sort-clientNamAZ"><label for="sort-clientNameAZ">Client name A-Z</label>
+        <input type="radio" name="sortType" value="Popularity" id="sort-clientNamZA"><label for="sort-clientNamZA">Client name Z-A</label>
+        <input type="radio" name="sortType" value="PriceIncreasing" id="sort-projectDeadline"><label for="sort-projectDeadline">Project deadline</label>
+        <input type="radio" name="sortType" value="PriceDecreasing" id="sort-projectProgress"><label for="sort-projectProgress">Project progress</label>
+        
+    </span> --}}
+
+    
+
+    <div class="displayMain">
+        <h1 class="sectionHeadLarge">Hello, this is the page with all of your projects</h1>
+        <div class="projectsContainer">
+            <ul> 
+                {{#each projectsFromDB}}
+                    <li><a href="/projects/{{id}}">{{>projectcard}}</a></li>
+                {{/each}}
+            </ul>
+
+        </div>
+        
+
+        <a id="addProjectLink" href="/projects/new"><img id="addProject" src="../images/addGradient.svg" alt="addProject"></a>
+
+    </div>
+
+
+</div>
+

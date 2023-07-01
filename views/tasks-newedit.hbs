@@ -1,0 +1,70 @@
+
+
+
+
+<div class="display">
+  {{>nav}}
+
+  <div >
+    <h1 class="sectionHeadLarge">Task information</h1>
+    <div id="newProjectContainer">
+      <form class="longForm" action="/projects/{{projectId}}/rooms/{{roomId}}/tasks/{{_id}}/edit" method="post">
+        <label class="formLabel">Category*
+          <select class="formInput" type="text" name="category" value="{{category}}" required />
+            <option>Painting</option>
+            <option>Plumbing</option>
+            <option>Electricity</option>
+            <option>Flooring</option>
+            <option>Drywalling</option>
+          </select>
+        </label>
+        <label class="formLabel">Procédure*
+          <input class="formInput" type="text" name="procedure" value="{{procedure}}" required />
+        </label>
+        <label class="formLabel">Position
+          <input class="formInput" type="text" name="position" value="{{position}}" />
+        </label>
+        <label class="formLabel">Remarks
+          <input class="formInput" type="text" name="remarks" value="{{remarks}}"/>
+        </label>
+        <label class="formLabel">Material
+          <input class="formInput" type="text" name="material" value="{{materials.material}}" />
+        </label>
+        <label class="formLabel">Material's cost 
+          <input class="formInput" type="text" name="materialCost" value="{{materials.materialCost}}" />
+        </label>
+        <label class="formLabel">Worker's Name
+          <input class="formInput" type="text" name="workerName" value="{{workers.name}}" />
+        </label>
+        <label class="formLabel">Worker's hourly Price
+          <input class="formInput" type="text" name="workerPrice" value="{{workers.workerHourlyPrice}}" />
+        </label>
+        <label class="formLabel">Worker's time spent
+          <input class="formInput" type="text" name="workerTime" value="{{workers.hoursSpent}}" />
+        </label>
+        <!--  A mettre à jour s'il reste du temps à la fin
+        <label class="formLabel">Start After
+            <select name="startAfter" multiple>
+                {{#each allTasks}}
+                    <option value="{{_id}}">{{name}}</option>
+                {{/each}}
+            </select>
+        </label>
+        -->
+        <label class="formLabel">Start Date
+          <input class="formInput" type="date" name="startDate" value="{{startDate}}" />
+        </label>
+        <label class="formLabel">Finish Date
+          <input class="formInput" type="date" name="finishDate" value="{{finishDate}}" />
+        </label>
+        <button class="roundGradientBtn" type="submit">Save Task</button>
+        <p>{{#if errorMessage}}
+            {{errorMessage}}
+          {{/if}}</p>
+      </form>
+
+    </div>
+
+  </div>
+
+</div>
