@@ -6,7 +6,7 @@ const roomSchema = new Schema({
     roomName: String,
     roomDescription: String,
     finishDate: Date,
-    roomInitialPictures: [String], /*Je sais pas trop sous quel format on doit rentrer l'image*/
+    roomInitialPictures: [String],
     threeDRendering: [String],
     currentPictures: [String],  
     Tasks : [{type: Schema.Types.ObjectId, ref: "Task"}],
