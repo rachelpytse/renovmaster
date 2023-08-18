@@ -1,0 +1,51 @@
+<div class="loginSignup">
+  <div class="loginSignupHeading">
+    <div class="loginSignupHeadingContainer">
+      <div class="mediumLogo">
+        <span class="mediumLogo1">Renov'</span>
+        <span class="mediumLogo2">Master</span>
+      </div>
+      <div class="slogan">
+        <span id="signupSlogan1" class="slogan1">Edit profile</span>
+        <span id="signupSlogan2" class="slogan2"></span>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="loginSignupFormContainer">
+    <form id="signupForm" class="longForm" action="/profile/edit" method="post">
+      <label class="formLabel">Full name:
+        <input class="formInput" type="text" name="fullName" value="{{userInSession.fullName}}" />
+      </label>
+      <label class="formLabel">Company name:
+        <input class="formInput" type="text" name="companyName" value="{{userInSession.companyName}}" />
+      </label>
+      <label class="formLabel">Company registration number :
+        <input class="formInput" type="text" name="companyRegistrationNb" value="{{userInSession.companyRegistrationNb}}" />
+      </label>
+      <label class="formLabel">Company address:
+        <input class="formInput" type="text" name="companyAddress" value="{{userInSession.companyAddress}}" />
+      </label>
+      <label class="formLabel">Company post code :
+        <input class="formInput" type="text" name="companyPostCode" value="{{userInSession.companyPostCode}}" />
+      </label>
+      <label class="formLabel">Email :
+        <input class="formInput" type="email" name="email" value="{{userInSession.email}}" />
+      </label>
+      <label class="formLabel">Phone number :
+        <input class="formInput" type="number" name="phoneNb" value="{{userInSession.phoneNb}}" />
+      </label>
+      <label class="formLabel">Password* :
+        <input class="formInput" type="password" name="password" />
+      </label>
+
+      <button id="signupBtn" class="roundGradientBtn" type="submit">Save</button>
+      <p>{{#if errorMessage}}
+          {{errorMessage}}
+        {{/if}}</p>
+    </form>
+
+  </div>
+
+</div>
