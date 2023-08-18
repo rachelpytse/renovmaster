@@ -1383,7 +1383,9 @@ video {
   display: none;
 }
 
-
+#projectListLink {
+  margin: 5vh 4% 0 auto;
+}
 
 #clientInfo {
   width: 92%;
@@ -1393,7 +1395,7 @@ video {
   justify-content: space-between;
   text-align: end;
   margin-top: auto;
-  padding-top: 5vh;
+  padding-top: 2vh;
 }
 
 #clientName {
@@ -1424,7 +1426,7 @@ video {
 #projectDeadline {
   display: block;
   width: 92%;
-  margin: 5vh 0;
+  margin: 2vh 0;
 }
 
 .smallTitle {
