@@ -89,7 +89,7 @@ if(editProject){
     projectForm.style.display = "grid";
     projectForm.style.gridTemplateColumns = "1fr 1fr 1fr";
     projectForm.style.alignItems = "flex-end";
-    projectForm.style.height = "10vh";
+    projectForm.style.height = "fit-content";
     projectForm.style.margin = "5vh 0";
   });
 }

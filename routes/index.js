@@ -16,7 +16,7 @@ router.get("/signup", (req, res, next) => {
 });
 
 router.post("/signup", (req, res, next) => {
-  const { fullName, password, companyRegistrationNb, companyAddress, companyPostCode, phoneNb, email} = req.body;
+  const { fullName, password, companyName, companyRegistrationNb, companyAddress, companyPostCode, phoneNb, email} = req.body;
   if(email ==="" /*|| User.find(email)*/ || password==="" ){
     res.render("signup", { errorMessage: "Email or password incorrect" })
     console.log(req.body)
@@ -29,6 +29,7 @@ router.post("/signup", (req, res, next) => {
         User.create({ 
           fullName: fullName, 
           password: hashedPassword,
+          companyName: companyName,
           companyRegistrationNb:companyRegistrationNb ,
           companyAddress: companyAddress,
           companyPostCode: companyPostCode,
@@ -36,8 +37,13 @@ router.post("/signup", (req, res, next) => {
           email: email,
         });
       })
+      .then((newUser) => {
+        // Set the session currentUser to the newly created user
+        req.session.currentUser = newUser;
+        res.redirect("/profile");
+      })
       .catch((error) => next(error));
-    res.redirect("/profile");
+    
   }
 });
 

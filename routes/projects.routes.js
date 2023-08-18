@@ -81,6 +81,9 @@ router.get("/:id", async (req, res, next) => {
     projectDetails.firstMeetingDateFormatted = dayjs(
       projectDetails.firstMeetingDate
     ).format("YYYY-MM-DD");
+    roomDetails.finishDateFormatted = dayjs(roomDetails.finishDate).format(
+      "YYYY-MM-DD"
+    );
     res.render("project-details", {
       projectDetails,
       roomDetails,

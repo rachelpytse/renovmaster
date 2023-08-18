@@ -2,6 +2,7 @@ const { Schema, model } = require("mongoose");
 
 const userSchema = new Schema({
   fullName: String,
+  companyName: String,
   companyRegistrationNb: Number,
   companyAddress: String,
   companyPostCode: Number,

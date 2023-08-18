@@ -68,7 +68,7 @@ router.post("/:projectId/rooms/:id", async (req, res, next) => {
     console.log("roomFromDB", roomFromDB);
     res.render("room-details", {
       roomFromDB,
-      isHidden: roomFromDB.roomDescription && roomFromDB.finishDate,
+      // isHidden: roomFromDB.roomDescription && roomFromDB.finishDateFormatted,
     });
   } catch (error) {
     console.log("an error happened", error);

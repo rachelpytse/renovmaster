@@ -681,8 +681,8 @@ video {
 
 #menuToggle input {
   display: block;
-  width: 33px;
-  height: 117px;
+  width: 66px;
+  height: 66px;
   position: absolute;
   top: -7px;
   left: -5px;
@@ -838,8 +838,10 @@ video {
 }
 @media (min-width: 1024px) {
   .navProfilePic {
+    height: 10vh;
     position: absolute;
     top: 8vh;
+    z-index: 100;
   }
 }
 @media (min-width: 1024px) {
@@ -931,10 +933,10 @@ video {
 }
 
 #profileContainer {
-  width: 80vw;
-
+  width: 80%;
   justify-items: stretch;
 }
+
 
 .profilePic {
   width: 50px;
@@ -943,6 +945,21 @@ video {
 .profileItem {
   display: flex;
   flex-direction: column;
+}
+
+@media (min-width: 1024px) {
+  #profileMain {
+    align-items: flex-start;
+    justify-content: center;
+  }
+  #profileContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .profilePic {
+    margin: 0 auto;
+    width: 10vh;
+  }
 }
 
 .profileItem h3 {
@@ -969,6 +986,12 @@ video {
   display: flex;
   justify-content: space-between;
   margin-top: 4vh;
+}
+
+@media(min-width: 1024px) {
+  #editDeleteProfile {
+    width: 80%;
+  }
 }
 
 .editDeleteBtn {
@@ -1223,7 +1246,7 @@ video {
   font-family: "Lato";
   font-style: normal;
   font-weight: 300;
-  font-size: calc(1.5vw + 0.6em);
+  font-size: calc(1.5vw + 0.5em);
 
   color: #161518;
 }
@@ -1359,6 +1382,8 @@ video {
 .attachForm {
   display: none;
 }
+
+
 
 #clientInfo {
   width: 92%;
@@ -1795,7 +1820,7 @@ video {
 
 .roomCartDescriptionDetails {
   width: 92%;
-  margin: 2vh 0;
+  margin: 2vh 0 2vh 3%;
   font-family: "lato";
   font-style: normal;
   font-weight: 400;
@@ -1863,7 +1888,7 @@ video {
   border-radius: 2px 2px 0px 0px;
 }
 
-@media (min-width: 1024px), (orientation: landscape) {
+/* @media (min-width: 1024px), (orientation: landscape) {
   .roomCartProcessBar {
     width: 20vw;
     height: 2vh;
@@ -1872,7 +1897,7 @@ video {
     background: #f3f3f4;
     border-radius: 2px 2px 0px 0px;
   }
-}
+} */
 
 
 .roomCartFinishedBar {
@@ -1949,6 +1974,8 @@ video {
 }
 
 .projectRoomName {
+  display: flex;
+  align-items: center;
   width: fit-content;
   padding: 2% 6% 2% 3%;
   margin-top: 1px;
@@ -1969,6 +1996,12 @@ video {
   font-weight: 300;
   margin: 3% 4vw 3% auto;
   color: #4e139f;
+}
+
+@media (min-width: 768px) {
+  .backLinkIcon {
+    width: 2rem;
+  }
 }
 
 #roomDescriptionInput {
