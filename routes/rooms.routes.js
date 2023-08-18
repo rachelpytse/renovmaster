@@ -149,7 +149,8 @@ router.post(
 
 //Route to delete Room
 router.get("/:projectId/rooms/:id/del", (req, res, next) => {
-  Room.findOneAndDelete(req.body.id).then(function () {
+  const projectId = req.params.projectId;
+  Room.findOneAndDelete({id:req.params.id}).then(function () {
     res.redirect(`/projects/${projectId}`);
   });
   // .catch((error) => {

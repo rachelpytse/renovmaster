@@ -75,7 +75,6 @@ router.post("/login", (req, res, next) => {
 /* Profile Page */
 router.get("/profile", (req, res, next) => {
   if (req.session.currentUser) {
-    // Fetch the most up-to-date user data from the database
     User.findById(req.session.currentUser._id)
       .then((userData) => {
         res.render('profile', { userInSession: userData });
@@ -157,6 +156,14 @@ router.post("/profile/edit", (req, res, next) => {
       next(error);
     });
 });
+
+router.get('/signout', (req, res, next) => {
+  req.session.destroy(err => {
+    if (err) next(err);
+    res.redirect('/login');
+  })
+});
+
 
 
 
