@@ -55,21 +55,15 @@ if (uploadRoomImgWindow3d) {
   });
 }
 
-// Sort bar
-document.querySelectorAll(".dropdown-el").forEach(function (dropdown) {
-  dropdown.addEventListener("click", function (e) {
-    e.preventDefault();
-    e.stopPropagation();
-    dropdown.classList.toggle("expanded");
-    document.getElementById(e.target.getAttribute("for")).checked = true;
-  });
-});
+/* JS to listen to input change for an automatic upload of profile pic */
+const uploadProfilePic = document.querySelector(".addProfilePic");
+const uploadProfilePicWindow = document.querySelector(".addProfilePicWindow");
 
-document.addEventListener("click", function () {
-  document.querySelectorAll(".dropdown-el").forEach(function (dropdown) {
-    dropdown.classList.remove("expanded");
+if (uploadProfilePicWindow) {
+  uploadProfilePicWindow.addEventListener("change", () => {
+    uploadProfilePic.submit();
   });
-});
+}
 
 // Supprimer room
 let editItem = document.getElementsByClassName("editDeleteBtn2");

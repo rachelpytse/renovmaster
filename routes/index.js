@@ -3,7 +3,12 @@ const router = require("express").Router();
 const bcryptjs = require("bcryptjs");
 const saltRounds = 10;
 
+const fileUploader = require("../config/cloudinary.config");
+
+
 const User = require("../models/User.model.js");
+const Project = require("../models/Project.model.js");
+
 
 /* GET home page */
 router.get("/", (req, res, next) => {
@@ -75,10 +80,18 @@ router.post("/login", (req, res, next) => {
 /* Profile Page */
 router.get("/profile", (req, res, next) => {
   if (req.session.currentUser) {
+
     User.findById(req.session.currentUser._id)
       .then((userData) => {
         res.render('profile', { userInSession: userData });
       })
+      // .then(
+      //   Project.find({ userId: req.session.currentUser._id })
+      //   .then((projectsFromDB) => {
+      //     userProjects = projectsFromDB;
+      //     res.render("profile", { projectsFromDB, userProjects });
+      //   })
+      // )
       .catch((error) => {
         console.error("Error while getting the user from db", error);
         next(error);
@@ -89,11 +102,58 @@ router.get("/profile", (req, res, next) => {
 });
 
 
+//Route to upload the profilePic
+
+router.post(
+  "/profile/photo",
+  fileUploader.single("profilePic"),
+  (req, res) => {
+    const userId = req.session.currentUser._id;
+    const profilePic = req.file.path;
+    console.log("profilePic :", profilePic);
+    User.findByIdAndUpdate(
+      userId,
+      { profilePic: profilePic },
+      { new: true }
+    )
+      .then(() => res.redirect(`/profile`))
+      .catch((error) =>
+        console.log(`Error while uploading the profilePic: ${error}`)
+      );
+  }
+);
+
+router.post(
+  "/profile/photo/update",
+  fileUploader.single("profilePic"),
+  (req, res) => {
+    const userId = req.session.currentUser._id;
+    const profilePic = req.file.path;
+    console.log("profilePic :", profilePic);
+    User.findByIdAndUpdate(
+      userId,
+      { profilePic: profilePic },
+      { new: true }
+    )
+      .then(() => res.redirect(`/profile`))
+      .catch((error) =>
+        console.log(`Error while uploading the profilePic: ${error}`)
+      );
+  }
+);
+
 // Edit Profile
 router.get("/profile/edit", (req, res, next) => {
   if (!req.session.currentUser) {
     return res.redirect("/login");
   }
+
+  // Project.find({ userId: req.session.currentUser._id })
+  //     .then((projectsFromDB) => {
+  //       userProjects = projectsFromDB;
+  //       res.render("profile-edit", { projectsFromDB, userProjects });
+  //     })
+  //     .catch((error) => next(error));
   
   User.findById(req.session.currentUser._id)
     .then((userData) => {
