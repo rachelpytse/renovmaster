@@ -935,7 +935,7 @@ video {
 }
 
 #profile > .backLink {
-  margin: 2vh 16px 0 auto;
+  margin: 2vh 4% 0 auto;
 }
 
 #profile .addPhoto {
@@ -965,6 +965,7 @@ video {
 #profileContainer {
   width: 80%;
   justify-items: stretch;
+  line-height: 0.8;
 }
 
 .profilePicContainer {
@@ -1000,6 +1001,10 @@ video {
 }
 
 @media (min-width: 1024px) {
+  #profile > .backLink {
+    margin: 2vh 10% 0 auto;
+  }
+
   #profileMain {
     align-items: flex-start;
   }
@@ -1007,6 +1012,7 @@ video {
     display: grid;
     grid-template-columns: 1fr 1fr;
     margin: auto;
+    
   }
   .profilePic {
     width: 100px;
@@ -1036,13 +1042,13 @@ video {
 
 @media (min-width: 1024px) and (max-width: 1399px) {
   .profileItem h3 {
-    font-size: 1.2em;
-    line-height: 0.8;
+    font-size: 1.1em;
+    
   }
 
   .profileItem p {
     font-size: 1em;
-    line-height: 0.8;
+    
   }
 }
 
@@ -1254,7 +1260,7 @@ video {
     width: 80px;
   }
 }
-@media (min-width: 1024px) {
+@media (min-width: 1440px) {
   #addProject {
     width: 100px;
   }
@@ -1945,7 +1951,7 @@ video {
   font-style: normal;
   font-weight: 700;
   font-size: calc(1vw + 0.7em);
-  margin-left: 4%;
+  margin: 0 4%;
   text-align: end;
 
   color: #151417;

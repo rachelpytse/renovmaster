@@ -15,10 +15,13 @@ let userRooms = {};
 router.get("/", (req, res, next) => {
   console.log(req.session.currentUser && req.session.currentUser.projects);
   if (req.session.currentUser) {
-    Project.find({ userId: req.session.currentUser._id })
-      .then((projectsFromDB) => {
+    Promise.all([
+      User.findById(req.session.currentUser._id),
+      Project.find({ userId: req.session.currentUser._id })
+    ])
+      .then(([userData, projectsFromDB]) => {
         userProjects = projectsFromDB;
-        res.render("projects", { projectsFromDB, userProjects });
+        res.render("projects", { userInSession: userData, projectsFromDB, userProjects });
       })
       .catch((error) => next(error));
   } else {
@@ -29,7 +32,13 @@ router.get("/", (req, res, next) => {
 // Route to display the formular to create a new project
 
 router.get("/new", (req, res, next) => {
-  res.render("newproject");
+  if (req.session.currentUser) {
+    User.findById(req.session.currentUser._id)
+    .then((userData) => {
+      res.render("newproject", { userInSession: userData });
+    })
+  }
+  
   console.log(req.session.currentUser._id);
 });
 
@@ -67,30 +76,40 @@ router.post("/:id/delete", (req, res, next) => {
 
 //Route to display the page with project details
 
-router.get("/:id", async (req, res, next) => {
+router.get("/:id", (req, res, next) => {
   const projectId = req.params.id;
   console.log(projectId);
-  try {
-    projectDetails = await Project.findById(projectId);
-    roomDetails = await Room.find({ projectId: projectId });
-    userProjects = await Project.find({ userId: req.session.currentUser._id });
-    console.log(projectDetails);
-    projectDetails.projectDeadlineFormatted = dayjs(
-      projectDetails.projectDeadline
-    ).format("YYYY-MM-DD");
-    projectDetails.firstMeetingDateFormatted = dayjs(
-      projectDetails.firstMeetingDate
-    ).format("YYYY-MM-DD");
-    roomDetails.finishDateFormatted = dayjs(roomDetails.finishDate).format(
-      "YYYY-MM-DD"
-    );
-    res.render("project-details", {
-      projectDetails,
-      roomDetails,
-      userProjects,
+  
+  if (req.session && req.session.currentUser) {
+    Promise.all([
+      Project.findById(projectId),
+      Room.find({ projectId: projectId }),
+      Project.find({ userId: req.session.currentUser._id }),
+      User.findById(req.session.currentUser._id)
+    ])
+    .then(([projectDetails, rooms, userProjects, userInSession]) => {
+      projectDetails.projectDeadlineFormatted = dayjs(projectDetails.projectDeadline).format("YYYY-MM-DD");
+      projectDetails.firstMeetingDateFormatted = dayjs(projectDetails.firstMeetingDate).format("YYYY-MM-DD");
+      
+      const roomDetails = rooms.map(room => {
+        return {
+          ...room.toObject(),
+          finishDateFormatted: dayjs(room.finishDate).format("YYYY-MM-DD")
+        };
+      });
+      
+      res.render("project-details", {
+        projectDetails,
+        roomDetails,
+        userProjects,
+        userInSession
+      });
+    })
+    .catch(error => {
+      console.log("an error happened", error);
     });
-  } catch (error) {
-    console.log("an error happened", error);
+  } else {
+    res.redirect("/login");
   }
 });
 
