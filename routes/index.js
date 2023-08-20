@@ -81,21 +81,18 @@ router.post("/login", (req, res, next) => {
 router.get("/profile", (req, res, next) => {
   if (req.session.currentUser) {
 
-    User.findById(req.session.currentUser._id)
-      .then((userData) => {
-        res.render('profile', { userInSession: userData });
-      })
-      // .then(
-      //   Project.find({ userId: req.session.currentUser._id })
-      //   .then((projectsFromDB) => {
-      //     userProjects = projectsFromDB;
-      //     res.render("profile", { projectsFromDB, userProjects });
-      //   })
-      // )
-      .catch((error) => {
-        console.error("Error while getting the user from db", error);
-        next(error);
-      });
+    Promise.all([
+      User.findById(req.session.currentUser._id),
+      Project.find({ userId: req.session.currentUser._id })
+    ])
+    .then(([userData, projectsFromDB]) => {
+      res.render('profile', { userInSession: userData, userProjects: projectsFromDB });
+    })
+    .catch(error => {
+      console.error("Error while getting the data from db", error);
+      next(error);
+    });
+    
   } else {
     res.redirect("/login");
   }
@@ -147,25 +144,7 @@ router.post(
 router.get(
   "/profile/photo/del",
   (req, res, next) => {
-    // const field = req.params.field;
     const userId = req.session.currentUser._id;
-    // const roomId = req.params.id;
-    // const index = Number(req.params.index); // "1"
-    // console.log("Index is", index);
-
-    // if (
-    //   !["roomInitialPictures", "threeDRendering", "currentPictures"].includes(
-    //     field
-    //   )
-    // ) {
-    //   next(new Error("Invalid photo field"));
-    // }
-
-    // switch (field) {
-    //   case 'roomInitialPictures' {
-
-    //   }
-    // }
 
     User.findById(userId).then((userFromDB) => {
       userFromDB.profilePic = "";
@@ -182,21 +161,17 @@ router.get("/profile/edit", (req, res, next) => {
     return res.redirect("/login");
   }
 
-  // Project.find({ userId: req.session.currentUser._id })
-  //     .then((projectsFromDB) => {
-  //       userProjects = projectsFromDB;
-  //       res.render("profile-edit", { projectsFromDB, userProjects });
-  //     })
-  //     .catch((error) => next(error));
-  
-  User.findById(req.session.currentUser._id)
-    .then((userData) => {
-      res.render("profile-edit", { userInSession: userData });
-    })
-    .catch((error) => {
-      console.error("Error while getting the user from db", error);
-      next(error);
-    });
+  Promise.all([
+    User.findById(req.session.currentUser._id),
+    Project.find({ userId: req.session.currentUser._id })
+  ])
+  .then(([userData, projectsFromDB]) => {
+    res.render('profile-edit', { userInSession: userData, userProjects: projectsFromDB });
+  })
+  .catch(error => {
+    console.error("Error while getting the data from db", error);
+    next(error);
+  });
 });
 
 router.post("/profile/edit", (req, res, next) => {
