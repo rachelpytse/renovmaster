@@ -30,17 +30,10 @@
 
           </div>
          {{/each}}
-         
-         
 
         </ul>
-
-        
         
       </div>
-          
-
-
   
 
       <div class="smallLogo">
@@ -49,10 +42,22 @@
           <span class="smallLogo2">Master</span>
         </a>
       </div>
-      <!--Icone de profil, il faudra mettre un  pour que ça renvoi à l'image de profile stocké dans la BDD-->
-      <a class="navProfilePic" href="/profile"><img
+
+      {{#if userInSession.profilePic}}
+        <div class="navProfilePicContainer">
+          <img class="navProfilePic" src="{{userInSession.profilePic}}" alt="profilePic"/>
+        </div>
+      {{else}}
+      
+        <a href="/profile">
+        <img
+          class="navProfilePic"
           src="/images/navDefautUserProfile.svg"
           alt="defautUserProfile"
         /></a>
+      
+      {{/if}}
+
+      
     </div>
   </div>

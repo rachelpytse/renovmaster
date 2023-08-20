@@ -833,22 +833,33 @@ video {
   color: #7a24f7;
 }
 
-.navProfilePic {
+.navProfilePicContainer {
+  width: 36px;
   height: 36px;
 }
+
+.navProfilePic {
+  width: 36px;
+  height: 36px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 100%;
+}
 @media (min-width: 1024px) {
-  .navProfilePic {
+  .navProfilePicContainer {
+    width: 10vh;
     height: 10vh;
+  }
+  .navProfilePic {
+    width: 10vh;
+    height: 10vh;
+    aspect-ratio: 1;
     position: absolute;
     top: 8vh;
     z-index: 100;
   }
 }
-@media (min-width: 1024px) {
-  .navProfilePic img {
-    height: 10vh;
-  }
-}
+
 
 #signoutBtn {
   position: absolute;
@@ -917,15 +928,34 @@ video {
 
 #profile {
   width: 100%;
-  height: 100vh;
+  
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
+#profile > .backLink {
+  margin: 2vh 16px 0 auto;
+}
+
+#profile .addPhoto {
+  width: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+#profile .addPhoto > input {
+  visibility: hidden;
+}
+
+.editPhoto {
+  margin: 0 auto;
+}
+
 #profileMain {
   width: 80vw;
-  height: 100vh;
   display: flex;
   flex-direction: column;
 
@@ -938,15 +968,22 @@ video {
 }
 
 .profilePicContainer {
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 2vh auto;
+}
+
+.profilePicContainer > .deletePhoto {
+  margin-top: auto;
 }
 
 .profilePic {
   width: 50px;
-  margin: 2vh auto;
+  height: 50px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 100%;
 }
 
 
@@ -957,27 +994,25 @@ video {
 
 @media (min-width: 768px) {
   .profilePic {
-    margin: 0 auto;
     width: 80px;
+    height: 80px;
   }
 }
 
 @media (min-width: 1024px) {
   #profileMain {
     align-items: flex-start;
-    justify-content: center;
   }
   #profileContainer {
     display: grid;
     grid-template-columns: 1fr 1fr;
     margin: auto;
   }
-  .profilePicContainer {
-    width: 80%;
-  }
   .profilePic {
-    margin: 0 auto;
     width: 100px;
+    height: 100px;
+  }
+  .profilePicContainer {
   }
 }
 
@@ -987,7 +1022,6 @@ video {
   font-weight: 400;
   font-size: calc(1vw + 0.8em);
   margin-bottom: 1vh;
-
   color: #2b2a30;
 }
 
@@ -998,6 +1032,18 @@ video {
   font-size: calc(1vw + 0.6em);
 
   color: #82808f;
+}
+
+@media (min-width: 1024px) and (max-width: 1399px) {
+  .profileItem h3 {
+    font-size: 1.2em;
+    line-height: 0.8;
+  }
+
+  .profileItem p {
+    font-size: 1em;
+    line-height: 0.8;
+  }
 }
 
 #editDeleteProfile {

@@ -7,19 +7,19 @@
   {{! </div> }}
   
   <div id="profile">
-    <a id="projectListLink" class="backLink" href="/projects"><img class="backLinkIcon" src="/images/backLink.svg" alt="">Back to project list</a>
+    <a id="profileBackLink" class="backLink" href="/projects"><img class="backLinkIcon" src="/images/backLink.svg" alt="">Back to project list</a>
    
-    <div id="" class="profilePicContainer">
+    <div id="" >
         <!-- Mise en page si une image a déjà été uploadée -->
-        <ul>
+        
           {{!-- {{#each this.profilePic}} --}}
           {{#if userInSession.profilePic}}
-          <div>
+          <div class="profilePicContainer">
             <img class="profilePic" src="{{userInSession.profilePic}}" alt="profilePic"/>
-            <a class="deletePhoto" href=""><img src="/images/deleteGray.svg" alt=""></a>
+            <a class="deletePhoto" href="/profile/photo/del"><img src="/images/deleteGray.svg" alt=""></a>
           </div>
           {{else}}
-          <li>
+          
             <form action="/profile/photo" method="post" enctype="multipart/form-data" class="addProfilePic"> 
               <label class="addPhoto"> 
                 <input type="file" name="profilePic" class="addProfilePicWindow"/>
@@ -30,15 +30,15 @@
                   {{errorMessage}}
                   {{/if}}</p>
             </form>
-          </li>
+          
           {{/if}}
-        </ul>
+        
     </div>
 
           <!-- Link to modify the picture once a picture has been uploaded --> 
           <form action="/profile/photo/update" method="post" enctype="multipart/form-data" class="addProfilePic"> 
-              <label>
-                  <div id="editDeleteProject">
+              <label class="editPhoto">
+                  <div >
                       <div id="editProject" class="editDeleteBtn">
                           <img class="editIcon" src="../images/edit.svg" alt="editIcon">
                           <input type="file" name="profilePic" class="addProfilePicWindow" />  

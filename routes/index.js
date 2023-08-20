@@ -142,6 +142,40 @@ router.post(
   }
 );
 
+//Route to delete profilePic
+
+router.get(
+  "/profile/photo/del",
+  (req, res, next) => {
+    // const field = req.params.field;
+    const userId = req.session.currentUser._id;
+    // const roomId = req.params.id;
+    // const index = Number(req.params.index); // "1"
+    // console.log("Index is", index);
+
+    // if (
+    //   !["roomInitialPictures", "threeDRendering", "currentPictures"].includes(
+    //     field
+    //   )
+    // ) {
+    //   next(new Error("Invalid photo field"));
+    // }
+
+    // switch (field) {
+    //   case 'roomInitialPictures' {
+
+    //   }
+    // }
+
+    User.findById(userId).then((userFromDB) => {
+      userFromDB.profilePic = "";
+      userFromDB.save().then(() => {
+        res.redirect(`/profile`);
+      });
+    });
+  }
+);
+
 // Edit Profile
 router.get("/profile/edit", (req, res, next) => {
   if (!req.session.currentUser) {
