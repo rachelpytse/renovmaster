@@ -37,9 +37,9 @@
       </div>
 
       {{#if userInSession.profilePic}}
-        <div class="navProfilePicContainer">
+        <a class="navProfilePicContainer" href="/profile">
           <img class="navProfilePic" src="{{userInSession.profilePic}}" alt="profilePic"/>
-        </div>
+        </a>
       {{else}}
       
         <a href="/profile">
