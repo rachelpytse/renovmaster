@@ -14,20 +14,21 @@ let userRooms = {};
 
 router.get("/", (req, res, next) => {
   console.log(req.session.currentUser && req.session.currentUser.projects);
+  
   if (req.session.currentUser) {
     Promise.all([
-      User.findById(req.session.currentUser._id),
-      Project.find({ userId: req.session.currentUser._id })
+      Project.find({ userId: req.session.currentUser._id }),
+      User.findById(req.session.currentUser._id)
     ])
-      .then(([userData, projectsFromDB]) => {
-        userProjects = projectsFromDB;
-        res.render("projects", { userInSession: userData, projectsFromDB, userProjects });
-      })
-      .catch((error) => next(error));
+    .then(([projectsFromDB, userData]) => {
+      res.render("projects", { projectsFromDB, userProjects: projectsFromDB, userInSession: userData });
+    })
+    .catch((error) => next(error));
   } else {
     res.redirect("/login");
   }
 });
+
 
 // Route to display the formular to create a new project
 
@@ -76,40 +77,32 @@ router.post("/:id/delete", (req, res, next) => {
 
 //Route to display the page with project details
 
-router.get("/:id", (req, res, next) => {
+router.get("/:id", async (req, res, next) => {
   const projectId = req.params.id;
   console.log(projectId);
-  
-  if (req.session && req.session.currentUser) {
-    Promise.all([
-      Project.findById(projectId),
-      Room.find({ projectId: projectId }),
-      Project.find({ userId: req.session.currentUser._id }),
-      User.findById(req.session.currentUser._id)
-    ])
-    .then(([projectDetails, rooms, userProjects, userInSession]) => {
-      projectDetails.projectDeadlineFormatted = dayjs(projectDetails.projectDeadline).format("YYYY-MM-DD");
-      projectDetails.firstMeetingDateFormatted = dayjs(projectDetails.firstMeetingDate).format("YYYY-MM-DD");
-      
-      const roomDetails = rooms.map(room => {
-        return {
-          ...room.toObject(),
-          finishDateFormatted: dayjs(room.finishDate).format("YYYY-MM-DD")
-        };
-      });
-      
-      res.render("project-details", {
-        projectDetails,
-        roomDetails,
-        userProjects,
-        userInSession
-      });
-    })
-    .catch(error => {
-      console.log("an error happened", error);
+  try {
+    projectDetails = await Project.findById(projectId);
+    roomDetails = await Room.find({ projectId: projectId });
+    userProjects = await Project.find({ userId: req.session.currentUser._id });
+    userInSession = await User.findById(req.session.currentUser._id);
+    console.log(projectDetails);
+    projectDetails.projectDeadlineFormatted = dayjs(
+      projectDetails.projectDeadline
+    ).format("YYYY-MM-DD");
+    projectDetails.firstMeetingDateFormatted = dayjs(
+      projectDetails.firstMeetingDate
+    ).format("YYYY-MM-DD");
+    roomDetails.finishDateFormatted = dayjs(roomDetails.finishDate).format(
+      "YYYY-MM-DD"
+    );
+    res.render("project-details", {
+      projectDetails,
+      roomDetails,
+      userProjects,
+      userInSession,
     });
-  } else {
-    res.redirect("/login");
+  } catch (error) {
+    console.log("an error happened", error);
   }
 });
 

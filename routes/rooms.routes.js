@@ -3,6 +3,8 @@ const router = require("express").Router();
 const Project = require("../models/Project.model.js");
 const Room = require("../models/Room.model.js");
 const Task = require("../models/Task.model.js");
+const User = require("../models/User.model.js");
+
 const dayjs = require("dayjs");
 
 const fileUploader = require("../config/cloudinary.config");
@@ -16,6 +18,7 @@ router.get("/:projectId/rooms/:id", async (req, res, next) => {
   try {
     userProjects = await Project.find({ userId: req.session.currentUser._id });
     tasksFromDB = await Task.find({ roomId: roomId });
+    userInSession = await User.findById(req.session.currentUser._id);
     //Code to determine the advancement of the project
     console.log("tasksFromDB = ", tasksFromDB)
     if(tasksFromDB.length>0){
@@ -44,7 +47,7 @@ router.get("/:projectId/rooms/:id", async (req, res, next) => {
       drywalling: await Task.find({ roomId: roomId, category: "Drywalling" }),
     };
     console.log("roomFromDB", roomFromDB);
-    res.render("room-details", { taskDetails, roomFromDB, userProjects });
+    res.render("room-details", { taskDetails, roomFromDB, userProjects, userInSession });
   } catch (error) {
     console.log("an error happened", error);
   }
