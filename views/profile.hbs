@@ -18,23 +18,6 @@
             <img class="profilePic" src="{{userInSession.profilePic}}" alt="profilePic"/>
             <a class="deletePhoto" href="/profile/photo/del"><img src="/images/deleteGray.svg" alt=""></a>
           </div>
-          {{else}}
-          
-            <form action="/profile/photo" method="post" enctype="multipart/form-data" class="addProfilePic"> 
-              <label class="addPhoto"> 
-                <input type="file" name="profilePic" class="addProfilePicWindow"/>
-                <img src="/images/DefautUserProfile.svg" alt="">
-                
-              </label>
-              
-              <p>{{#if errorMessage}}
-                  {{errorMessage}}
-                  {{/if}}</p>
-            </form>
-          
-          {{/if}}
-        
-    </div>
 
           <!-- Link to modify the picture once a picture has been uploaded --> 
           <form action="/profile/photo/update" method="post" enctype="multipart/form-data" class="addProfilePic"> 
@@ -47,6 +30,32 @@
                   </div>
               </label>
           </form>
+          {{else}}
+          <div class="profilePicContainer">
+            <img class="profilePic" src="/images/navDefautUserProfile.svg" alt="profilePic"/>
+          </div>
+
+          <!-- Link to upload the picture once --> 
+          <form action="/profile/photo" method="post" enctype="multipart/form-data" class="addProfilePic"> 
+              <label class="editPhoto">
+                  <div >
+                      <div id="editProject" class="editDeleteBtn">
+                          <img class="editIcon" src="../images/edit.svg" alt="editIcon">
+                          <input type="file" name="profilePic" class="addProfilePicWindow" />  
+                      </div>
+                  </div>
+              </label>
+              
+              <p>{{#if errorMessage}}
+                  {{errorMessage}}
+                  {{/if}}</p>
+            </form>
+          
+          {{/if}}
+        
+    </div>
+
+          
         
    
     {{!-- <div class="profilePicContainer"><img class="profilePic" src="../images/defautUserProfile.svg" alt="profilePic" /></div> --}}

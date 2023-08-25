@@ -16,9 +16,9 @@
             <form action="/projects/{{projectId}}/rooms/{{roomId}}/tasks/{{_id}}/check" method="post" class="checkTask"> 
               <label > 
                 {{#if Done}}
-                    <input type="checkbox" name="checkbox" class="checkbox" checked >
+                    <input type="checkbox" name="checkbox" class="checkbox" value="true" checked >
                 {{else}}
-                    <input type="checkbox" name="checkbox" class="checkbox">
+                    <input type="checkbox" name="checkbox" class="checkbox" value="false">
                 {{/if}}
               </label>
             </form>

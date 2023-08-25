@@ -950,6 +950,11 @@ video {
   visibility: hidden;
 }
 
+#profile .addPhoto img {
+  width: 50px;
+  height: 50px;
+}
+
 .editPhoto {
   margin: 0 auto;
 }
@@ -994,6 +999,11 @@ video {
 }
 
 @media (min-width: 768px) {
+  #profile .addPhoto img {
+    width: 80px;
+    height: 80px;
+  }
+
   .profilePic {
     width: 80px;
     height: 80px;

@@ -134,3 +134,15 @@ checkBox.forEach(function(el,i) {
     console.log("case checked!")
   });
 })
+
+checkBox.forEach(function(el,i) {
+  el.addEventListener("change", function () {
+    const inputHidden = document.createElement('input'); // create a hidden input
+    inputHidden.type = 'hidden';
+    inputHidden.name = 'isDone';
+    inputHidden.value = el.checked; // Set the value based on checkbox state
+    checkForm[i].appendChild(inputHidden); // Add the input to the form
+    checkForm[i].submit();
+    console.log(el.checked ? "case checked!" : "case unchecked!")
+  });
+});

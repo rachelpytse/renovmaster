@@ -217,12 +217,14 @@ router.post("/:projectId/rooms/:roomId/tasks", (req, res, next) => {
     });
 });
 
-//Route to check when a task is done
+//Route to toggle a task's done status
 router.post("/:projectId/rooms/:roomId/tasks/:id/check", (req, res, next) => {
   const taskId = req.params.id;
-  Task.findByIdAndUpdate(taskId, { Done: true }, { new: true })
+  const isDone = req.body.isDone === 'true'; // Extract from request body
+
+  Task.findByIdAndUpdate(taskId, { Done: isDone }, { new: true })
     .then((taskFromDB) => {
-      console.log(taskFromDB.procedure, "checked!");
+      console.log(taskFromDB.procedure, isDone ? "checked!" : "unchecked!");
       res.redirect(
         `/projects/${taskFromDB.projectId}/rooms/${taskFromDB.roomId}`
       );
@@ -230,21 +232,15 @@ router.post("/:projectId/rooms/:roomId/tasks/:id/check", (req, res, next) => {
     .catch((error) => next(error));
 });
 
+
 //Route to edit a Task
 router.get("/:projectId/rooms/:roomId/tasks/:id/edit", (req, res, next) => {
-  if (req.session.currentUser) {
-      Promise.all([
-          Task.findById(req.params.id),
-          User.findById(req.session.currentUser._id),
-          Project.find({ userId: req.session.currentUser._id })  
-      ])
-      .then(([taskFromDB, userData, userProjects]) => {
-          res.render("tasks-newedit", { taskFromDB, userInSession: userData, userProjects: userProjects });
-      })
-      .catch((error) => next(error));
-  } else {
-      res.redirect("/login");
-  }
+  const taskId = req.params.id;
+  Task.findById(taskId)
+    .then((taskFromDB) => {
+      res.render("tasks-newedit", taskFromDB);
+    })
+    .catch((error) => next(error));
 });
 
 
