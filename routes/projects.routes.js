@@ -34,14 +34,16 @@ router.get("/", (req, res, next) => {
 
 router.get("/new", (req, res, next) => {
   if (req.session.currentUser) {
-    User.findById(req.session.currentUser._id)
-    .then((userData) => {
-      res.render("newproject", { userInSession: userData });
+    Project.find({ userId: req.session.currentUser._id })
+    .then((projectsFromDB) => {
+      res.render("newproject", { userInSession: req.session.currentUser, userProjects: projectsFromDB });
     })
+    .catch((error) => next(error));
+  } else {
+    res.redirect("/login");
   }
-  
-  console.log(req.session.currentUser._id);
 });
+
 
 // Route to create a new project
 

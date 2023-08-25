@@ -778,14 +778,19 @@ video {
 }
 
 .menuClient {
-  padding: 3% 0;
+  padding: 10% 0;
   margin: 0 auto;
   font-family: "Lato", sans-serif;
   font-style: normal;
   font-weight: 300;
   font-size: calc(1vw + 0.7em);
 }
-
+@media (min-width: 1024px) {
+  .menuClient {
+    padding: 3% 0;
+  }
+}
+ 
 .menuRoom {
   padding: 3% 0;
   margin-left: 20%;
