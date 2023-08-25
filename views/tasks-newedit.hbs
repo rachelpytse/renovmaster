@@ -8,7 +8,7 @@
   <div >
     <h1 class="sectionHeadLarge">Task information</h1>
     <div id="newProjectContainer">
-      <form class="longForm" action="/projects/{{projectId}}/rooms/{{roomId}}/tasks/{{_id}}/edit" method="post">
+      <form id="createTaskForm" class="longForm" action="/projects/{{projectId}}/rooms/{{roomId}}/tasks/{{_id}}/edit" method="post">
         <label class="formLabel">Category*
           <select class="formInput" type="text" name="category" value="{{category}}" required />
             <option>Painting</option>

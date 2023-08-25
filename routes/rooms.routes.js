@@ -197,6 +197,8 @@ router.get(
   }
 );
 
+
+
 router.post("/:projectId/rooms/:roomId/tasks", (req, res, next) => {
   const taskInfo = {
     projectId: req.params.projectId,
@@ -230,13 +232,21 @@ router.post("/:projectId/rooms/:roomId/tasks/:id/check", (req, res, next) => {
 
 //Route to edit a Task
 router.get("/:projectId/rooms/:roomId/tasks/:id/edit", (req, res, next) => {
-  const taskId = req.params.id;
-  Task.findById(taskId)
-    .then((taskFromDB) => {
-      res.render("tasks-newedit", taskFromDB);
-    })
-    .catch((error) => next(error));
+  if (req.session.currentUser) {
+      Promise.all([
+          Task.findById(req.params.id),
+          User.findById(req.session.currentUser._id),
+          Project.find({ userId: req.session.currentUser._id })  
+      ])
+      .then(([taskFromDB, userData, userProjects]) => {
+          res.render("tasks-newedit", { taskFromDB, userInSession: userData, userProjects: userProjects });
+      })
+      .catch((error) => next(error));
+  } else {
+      res.redirect("/login");
+  }
 });
+
 
 router.post("/:projectId/rooms/:roomId/tasks/:id/edit", (req, res, next) => {
   const taskId = req.params.id;
