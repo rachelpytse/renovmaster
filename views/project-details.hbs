@@ -7,6 +7,31 @@
   <div class="displayMain">
     <div id="projectDetails">
       <div class="projectDetailsHeading">
+        
+
+        <a id="projectListLink" class="backLink" href="/projects"><img class="backLinkIcon" src="/images/backLink.svg" alt="">Back to project list</a>
+
+        <div id="clientInfo">
+
+          <div id="clientName">{{projectDetails.firstName}} {{projectDetails.lastName}}</div>
+          <div id="clientContact">
+            {{projectDetails.address}}
+            {{projectDetails.phoneNb}}
+          </div>
+        </div>
+
+        <div id="projectDeadline" class="dateContainer">
+          <span id="projectDeadlineLabel" class="smallTitle">Project deadline:  </span><span id="projectDeadlineDate">{{projectDetails.projectDeadlineFormatted}}</span>
+          
+        </div>
+
+        <div id="editDeleteProject">
+          <div id="editProjectBtn" class="editDeleteBtn2">
+            <img class="editIcon" src="../images/edit.svg" alt="editIcon">
+            <a class="editLink" href="#">Edit / Delete project</a>
+          </div>
+        </div>
+
         <form id="projectInfoForm" class="attachForm hidden" action="/projects/{{projectDetails._id}}" method="POST"> 
           <label id="firstNameLabel" class="formLabel">Client first name
             <input id="firstNameInput" class="attachFormInput" type="text" name="firstName"/>
@@ -35,29 +60,6 @@
               {{errorMessage}}
           {{/if}}</p>
         </form>
-
-        <a id="projectListLink" class="backLink" href="/projects"><img class="backLinkIcon" src="/images/backLink.svg" alt="">Back to project list</a>
-
-        <div id="clientInfo">
-
-          <div id="clientName">{{projectDetails.firstName}} {{projectDetails.lastName}}</div>
-          <div id="clientContact">
-            {{projectDetails.address}}
-            {{projectDetails.phoneNb}}
-          </div>
-        </div>
-
-        <div id="projectDeadline" class="dateContainer">
-          <span id="projectDeadlineLabel" class="smallTitle">Project deadline:  </span><span id="projectDeadlineDate">{{projectDetails.projectDeadlineFormatted}}</span>
-          
-        </div>
-
-        <div id="editDeleteProject">
-          <div id="editProjectBtn" class="editDeleteBtn2">
-            <img class="editIcon" src="../images/edit.svg" alt="editIcon">
-            <a class="editLink" href="#">Edit / Delete project</a>
-          </div>
-        </div>
       
         <div id="deleteProjectBtn" class="hiddenDeleteBtn">
           <img class="deleteIcon" src="/images/delete.svg" alt="deleteIcon">
@@ -67,11 +69,11 @@
         <div id="deleteProject" class="hidden">
           <h3>Are you sure you want to delete this project </h3> 
           <form action="/projects/{{projectDetails._id}}/delete" method="post" id="doIt"> 
-            <label class="deleteProject"> 
+            {{!-- <label class="deleteProject">  --}}
               <button id="doIt" class="roundWhiteBtn">Yes</button>
               <button id="dont" class="roundGradientBtn" >No</button>
 
-            </label>
+            {{!-- </label> --}}
           </form>
         </div>
 
