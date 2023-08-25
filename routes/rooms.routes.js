@@ -234,13 +234,15 @@ router.post("/:projectId/rooms/:roomId/tasks/:id/check", (req, res, next) => {
 
 
 //Route to edit a Task
-router.get("/:projectId/rooms/:roomId/tasks/:id/edit", (req, res, next) => {
+router.get("/:projectId/rooms/:roomId/tasks/:id/edit", async(req, res, next) => {
   const taskId = req.params.id;
-  Task.findById(taskId)
-    .then((taskFromDB) => {
-      res.render("tasks-newedit", taskFromDB);
-    })
-    .catch((error) => next(error));
+  try {
+    const taskFromDB = await Task.findById(taskId);
+    const userProjects = await Project.find({userId: req.session.currentUser._id});
+    const userInSession = await User.findById(req.session.currentUser._id)
+    res.render("tasks-newedit", {taskFromDB, userProjects, userInSession})
+  } 
+  catch(error) {next(error)};
 });
 
 
