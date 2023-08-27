@@ -1764,6 +1764,11 @@ video {
   margin: auto;
 }
 
+#floorplanPhotos li {
+  height: 100%;
+  margin: auto;
+}
+
 .photo {
   position: relative;
   width: 100%;
