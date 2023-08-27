@@ -619,7 +619,7 @@ video {
 
 .navbar {
   width: 100vw;
-  height: 106px;
+  height: 7.2vh;
   display: flex;
   justify-content: space-between;
   background-color: #FFFFFF;
@@ -636,12 +636,12 @@ video {
 
 .navbarUp {
   width: 100vw;
+  height: 5vh;
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
-  padding: 60px 10px 10px 10px;
+  align-items: center;
+  padding: 10px;
   border-bottom: 1px solid #dcdbe0;
-  background-color: white;
 }
 @media (min-width: 1024px) {
   .navbarUp {
@@ -652,7 +652,6 @@ video {
     justify-content: space-around;
     align-items: center;
     border-bottom: none;
-    background-color: #fafafe;
   }
 }
 
