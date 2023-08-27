@@ -685,7 +685,7 @@ video {
   width: 66px;
   height: 66px;
   position: absolute;
-  top: -7px;
+  top: 40px;
   left: -5px;
 
   cursor: pointer;
