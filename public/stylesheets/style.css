@@ -2155,7 +2155,7 @@ video {
   margin: 2vh 4vw;
 }
 
-.projectDeadlineLabel {
+#roomDeadlineLabel {
   margin-left: 3%;
 }
 
