@@ -2155,6 +2155,10 @@ video {
   margin: 2vh 4vw;
 }
 
+.projectDeadlineLabel {
+  margin-left: 3%;
+}
+
 .roomSection {
   
   display: flex;
