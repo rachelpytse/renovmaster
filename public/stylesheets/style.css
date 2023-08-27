@@ -1325,11 +1325,13 @@ video {
   font-weight: 500;
   font-size: calc(1.5vw + 0.8em);
   padding: 5px;
+  white-space: nowrap;
 
   color: #2b2a30;
 }
 
 .projectCardclientContact {
+  width: 98%;
   font-family: "Lato";
   font-style: normal;
   font-weight: 300;
