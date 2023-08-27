@@ -5,7 +5,7 @@ const projectSchema = new Schema({
     firstName: String,
     lastName: String,
     address : String,
-    phoneNb : Number,
+    phoneNb : String,
     email : String,
     firstMeetingDate : Date,
     firstMeetingAddress : String,
