@@ -44,7 +44,7 @@ router.get("/:projectId/rooms/:id", async (req, res, next) => {
       plumbing: await Task.find({ roomId: roomId, category: "Plumbing" }),
       electricity: await Task.find({ roomId: roomId, category: "Electricity" }),
       flooring: await Task.find({ roomId: roomId, category: "Flooring" }),
-      Other: await Task.find({ roomId: roomId, category: "Other" }),
+      other: await Task.find({ roomId: roomId, category: "Other" }),
     };
     console.log("roomFromDB", roomFromDB);
     res.render("room-details", { taskDetails, roomFromDB, userProjects, userInSession });
