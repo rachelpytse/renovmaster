@@ -34,23 +34,23 @@
 
         <form id="projectInfoForm" class="attachForm hidden" action="/projects/{{projectDetails._id}}" method="POST"> 
           <label id="firstNameLabel" class="formLabel">First name
-            <input id="firstNameInput" class="attachFormInput" type="text" name="firstName"/>
+            <input id="firstNameInput" class="attachFormInput" type="text" name="firstName" value="{{projectDetails.firstName}}"/>
           </label>
 
           <label id="lastNameLabel" class="formLabel">Last name
-            <input id="lastNameInput" class="attachFormInput" type="text" name="lastName"/>
+            <input id="lastNameInput" class="attachFormInput" type="text" name="lastName" value="{{projectDetails.lastName}}"/>
           </label>
 
           <label id="addressLabel" class="formLabel">Address
-            <input id="addressInput" class="attachFormInput" type="text" name="address"/>
+            <input id="addressInput" class="attachFormInput" type="text" name="address" value="{{projectDetails.address}}"/>
           </label>
 
           <label id="phoneNbLabel" class="formLabel">Phone number
-            <input id="phoneNbInput" class="attachFormInput" type="text" name="phoneNb"/>
+            <input id="phoneNbInput" class="attachFormInput" type="text" name="phoneNb" value="{{projectDetails.phoneNb}}"/>
           </label>
 
           <label id="projectDeadlineLabel" class="formLabel">Project deadline
-            <input id="projectDeadlineInput" class="attachFormInput" type="date" name="projectDeadline"/>
+            <input id="projectDeadlineInput" class="attachFormInput" type="date" name="projectDeadline" value="{{projectDetails.projectDeadlineFormatted}}"/>
           </label>
 
 

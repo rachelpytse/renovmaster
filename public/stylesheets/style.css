@@ -1333,6 +1333,7 @@ video {
   font-style: normal;
   font-weight: 300;
   font-size: calc(1.5vw + 0.5em);
+  padding: 5px;
 
   color: #161518;
 }
