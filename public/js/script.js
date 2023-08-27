@@ -146,3 +146,4 @@ checkBox.forEach(function(el,i) {
     console.log(el.checked ? "case checked!" : "case unchecked!")
   });
 });
+

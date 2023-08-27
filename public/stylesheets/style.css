@@ -1289,6 +1289,7 @@ video {
   background: #ffffff;
   border-radius: 10px;
   filter: drop-shadow(0px 4px 4px #ebebf4);
+  overflow: hidden;
 }
 @media (min-width: 600px), (orientation: landscape) {
   .projectCard {
@@ -2195,16 +2196,15 @@ video {
 
   display: flex;
   align-items: center;
-  justify-content: center;
+  
   overflow: auto;
   scroll-snap-type: x mandatory;
 }
 
 .roomPhotoContainer li {
   position: relative;
-  max-width: 50%;
   height: 80%;
-  margin: auto;
+  margin: auto 2vw auto auto;
 
   border: 0px solid;
   scroll-snap-align: start;
