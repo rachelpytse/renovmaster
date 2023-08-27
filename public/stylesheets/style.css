@@ -2041,7 +2041,7 @@ video {
 
 .taskTable {
   border-collapse: collapse;
-  margin-bottom: 3vh;
+  margin: 0 16px 3vh 16px;
 }
 
 .taskTable th {

@@ -11,12 +11,12 @@
         
     <h2 class="roomCartDescription">Description</h2>
     <p class="roomCartDescriptionDetails">{{roomFromDB.roomDescription}}</p>
-    <span id="roomFinishDate">{{roomFromDB.finishDateFormatted}}</span>
+    <span id="projectDeadlineLabel" class="smallTitle">Room deadline:  </span><span id="roomFinishDate">{{roomFromDB.finishDateFormatted}}</span>
     
 
     <form id="roomDescriptionForm" class="attachForm {{#if isHidden }}hidden{{/if}}" action="/projects/{{roomFromDB.projectId}}/rooms/{{roomFromDB._id}}" method="POST"> 
         <label id="roomDescriptionLabel" class="formLabel">
-            <input id="roomDescriptionInput" class="attachFormInput" type="text" name="roomDescription"/>
+            <input id="roomDescriptionInput" class="attachFormInput" type="text" name="roomDescription" value="{{roomFromDB.roomDescription}}"/>
         </label>
         <p class="attachInfo">
         </p>
@@ -24,7 +24,7 @@
         <div class="roomCartEFDateContainer">
             <label class="roomCartEFDateLabel">Estimated finish date :</label>
                 <span class="roomCartEFDate">{{roomFromDB.finishDateFormatted}}</span>
-                <input id="roomCartEFDateInput" class="attachFormInput" type="date" name="roomCartEFDate"/>
+                <input id="roomCartEFDateInput" class="attachFormInput" type="date" name="roomCartEFDate" value="{{roomFromDB.finishDateFormatted}}"/>
             </label>
             <p class="attachInfo">
             </p>
