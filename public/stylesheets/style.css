@@ -1397,11 +1397,16 @@ video {
 
 #newProjectMain {
   width: 75vw;
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+}
+@media (max-width: 1024px) and (orientation: portrait){
+  #newProjectMain {
+    justify-content: center;
+    margin-top: 5vh
+  }
 }
 
 #newProjectBtn {
