@@ -84,7 +84,7 @@ router.get("/:id", async (req, res, next) => {
   console.log(projectId);
   try {
     projectDetails = await Project.findById(projectId);
-    roomDetails = await Room.find({ projectId: projectId });
+    roomFromDB = await Room.find({ projectId: projectId });
     userProjects = await Project.find({ userId: req.session.currentUser._id });
     userInSession = await User.findById(req.session.currentUser._id);
     console.log(projectDetails);
@@ -94,12 +94,12 @@ router.get("/:id", async (req, res, next) => {
     projectDetails.firstMeetingDateFormatted = dayjs(
       projectDetails.firstMeetingDate
     ).format("YYYY-MM-DD");
-    roomDetails.finishDateFormatted = dayjs(roomDetails.finishDate).format(
+    roomFromDB.finishDateFormatted = dayjs(roomFromDB.finishDate).format(
       "YYYY-MM-DD"
     );
     res.render("project-details", {
       projectDetails,
-      roomDetails,
+      roomFromDB,
       userProjects,
       userInSession,
     });

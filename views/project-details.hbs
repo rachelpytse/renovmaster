@@ -227,7 +227,7 @@
       
       <div class="projectDetailsRooms">
         <h2 class="sectionHead">Rooms</h2>
-          {{#each roomDetails}}
+          {{#each roomFromDB}}
           <a class="roomPreviewLink" href="/projects/{{projectId}}/rooms/{{_id}}">{{>room}}</a>
           {{/each}}
         
