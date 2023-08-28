@@ -1647,6 +1647,7 @@ video {
 }
 
 .status {
+  width: min-content;
   font-family: "Lato";
   font-style: normal;
   font-weight: 300;
@@ -1723,7 +1724,7 @@ video {
   width: 92%;
   display: flex;
   flex-direction: column;
-  margin: 0 auto 5vh auto;
+  margin: 0 auto 3vh auto;
 
   justify-content: space-between;
   align-items: center;
