@@ -14,6 +14,11 @@ const projectSchema = new Schema({
     floorPlan : String,
     mainPicture : String,
     Rooms : [{type: Schema.Types.ObjectId, ref: "Room"}],
+    status: {
+        type: String,
+        enum: ['meeting', 'design', 'material', 'workInProgress', 'Finished'],
+        default: 'meeting'
+    }
 
 });
 
