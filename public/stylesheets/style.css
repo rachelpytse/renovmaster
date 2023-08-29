@@ -987,6 +987,7 @@ video {
 }
 
 .profilePicContainer > .deletePhoto {
+  padding-left: 5px;
   margin-top: auto;
 }
 
@@ -1270,7 +1271,7 @@ video {
 }
 
 #addProject {
-  padding: 10px;
+  padding: 20px;
 }
 @media (min-width: 600px) {
   #addProject {
