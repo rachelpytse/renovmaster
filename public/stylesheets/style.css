@@ -983,7 +983,7 @@ video {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 2vh auto;
+  margin: 1vh auto 0 auto;
 }
 
 .profilePicContainer > .deletePhoto {
@@ -996,7 +996,9 @@ video {
   height: 50px;
   object-fit: cover;
   object-position: center;
+  border: 2px solid white;
   border-radius: 100%;
+  filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.25)) drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.25));
 }
 
 
