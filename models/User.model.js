@@ -4,7 +4,7 @@ const userSchema = new Schema({
   profilePic: String,
   fullName: String,
   companyName: String,
-  companyRegistrationNb: Number,
+  companyRegistrationNb: String,
   companyAddress: String,
   companyPostCode: Number,
   phoneNb:String,
