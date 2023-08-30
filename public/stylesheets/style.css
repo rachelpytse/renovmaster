@@ -1055,6 +1055,7 @@ video {
   font-style: normal;
   font-weight: 700;
   font-size: calc(1vw + 0.6em);
+  line-height: 0.5;
 
   color: #82808f;
 }
